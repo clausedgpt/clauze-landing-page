@@ -1,23 +1,9 @@
 import type { ReactNode } from "react";
 import type { Dict } from "@/lib/dictionaries/fr";
-import { APP_URL, CONTACT_EMAIL, type Locale, locales } from "@/lib/i18n";
+import { APP_URL, CONTACT_EMAIL, type Locale } from "@/lib/i18n";
 import { Annotated } from "./annotated";
 import { IconMenu, Logo } from "./icons";
-
-const LANG_LABEL: Record<Locale, string> = { fr: "FR", ar: "ع", en: "EN" };
-const LANG_NAME: Record<Locale, string> = { fr: "Français", ar: "العربية", en: "English" };
-
-export function LangSwitch({ current, label }: { current: Locale; label: string }) {
-  return (
-    <nav className="langs" aria-label={label}>
-      {locales.map((l) => (
-        <a key={l} href={`/${l}`} hrefLang={l} lang={l} aria-current={l === current ? "page" : undefined} title={LANG_NAME[l]}>
-          {LANG_LABEL[l]}
-        </a>
-      ))}
-    </nav>
-  );
-}
+import { LangMenu } from "./lang-menu";
 
 export function Header({ t, lang }: { t: Dict["nav"]; lang: Locale }) {
   return (
@@ -27,16 +13,8 @@ export function Header({ t, lang }: { t: Dict["nav"]; lang: Locale }) {
           <Logo />
           <span className="brand-word" lang="en">Clauze</span>
         </a>
-        <nav className="nav" aria-label="Sections">
-          {t.sections.map((s, i) => (
-            <a key={s.id} href={`#${s.id}`}>
-              <span className="nav-no">{i + 2}</span>
-              {s.label}
-            </a>
-          ))}
-        </nav>
         <div className="header-end">
-          <LangSwitch current={lang} label={t.language} />
+          <LangMenu current={lang} label={t.language} />
           <a className="login" href={`${APP_URL}/login`}>{t.login}</a>
           <a className="btn btn-sm" href={`${APP_URL}/signup`}>{t.cta}</a>
           <details className="menu">
@@ -45,14 +23,8 @@ export function Header({ t, lang }: { t: Dict["nav"]; lang: Locale }) {
               {t.menu}
             </summary>
             <div className="menu-panel">
-              {t.sections.map((s) => (
-                <a key={s.id} href={`#${s.id}`}>{s.label}</a>
-              ))}
-              <hr />
               <a href={`${APP_URL}/login`}>{t.login}</a>
               <a href={`${APP_URL}/signup`} className="btn btn-sm" style={{ justifyContent: "center" }}>{t.cta}</a>
-              <hr />
-              <LangSwitch current={lang} label={t.language} />
             </div>
           </details>
         </div>
@@ -118,7 +90,7 @@ export function Footer({ t, nav, lang }: { t: Dict["footer"]; nav: Dict["nav"]; 
         </div>
         <div className="footer-base">
           <span>© {new Date().getFullYear()} Clauze. {t.rights}</span>
-          <LangSwitch current={lang} label={nav.language} />
+          <LangMenu current={lang} label={nav.language} up />
         </div>
       </div>
     </footer>

@@ -9,13 +9,6 @@ export const ar: Dict = {
   },
   nav: {
     skip: "الانتقال إلى المحتوى",
-    sections: [
-      { id: "recherche", label: "البحث" },
-      { id: "assistant", label: "المساعد" },
-      { id: "revue", label: "المراجعة" },
-      { id: "redaction", label: "التحرير" },
-      { id: "cabinet", label: "المكتب" },
-    ],
     login: "تسجيل الدخول",
     cta: "طلب النفاذ",
     menu: "القائمة",

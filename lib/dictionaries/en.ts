@@ -8,13 +8,6 @@ export const en: Dict = {
   },
   nav: {
     skip: "Skip to content",
-    sections: [
-      { id: "recherche", label: "Search" },
-      { id: "assistant", label: "Assistant" },
-      { id: "revue", label: "Review" },
-      { id: "redaction", label: "Drafting" },
-      { id: "cabinet", label: "Firm" },
-    ],
     login: "Log in",
     cta: "Request access",
     menu: "Menu",

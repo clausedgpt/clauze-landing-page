@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans, Markazi_Text, Readex_Pro } from "next/font/google";
 import { notFound } from "next/navigation";
 import { SITE_URL, dir, getDictionary, isLocale, locales } from "@/lib/i18n";
+import { Analytics } from "@vercel/analytics/next"
 import "../globals.css";
 
 // Brand typefaces (owner-pinned): Cormorant Garamond primary, DM Sans secondary.
@@ -66,6 +67,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <script dangerouslySetInnerHTML={{ __html: motionScript }} />
       </head>
       <body>{children}</body>
+      <Analytics />
     </html>
   );
 }

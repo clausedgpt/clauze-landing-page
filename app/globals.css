@@ -120,17 +120,7 @@ button { font: inherit; color: inherit; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
 .brand svg { width: 34px; height: 34px; }
 .brand-word { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; }
-.nav { display: flex; gap: 22px; margin-inline-start: 12px; }
-.nav a { text-decoration: none; color: var(--ink-soft); font-size: 0.9375rem; font-weight: 500; display: inline-flex; align-items: baseline; gap: 6px; transition: color var(--t-quick) var(--ease); }
-.nav-no { font-family: var(--font-law); font-size: 0.9375rem; font-weight: 600; color: #6f737c; font-variant-numeric: tabular-nums; }
-:lang(ar) .nav-no { font-family: var(--font-law-ar); font-size: 1rem; }
-.nav a:hover { color: var(--minuit); }
 .header-end { display: flex; align-items: center; gap: 18px; margin-inline-start: auto; }
-.langs { display: flex; gap: 2px; font-size: 0.875rem; font-weight: 600; }
-.langs a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 30px; padding-inline: 8px; border-radius: 6px; color: var(--ink-soft); line-height: 1; }
-.langs a:lang(ar) { font-family: var(--font-voice-ar); font-size: 0.9375rem; padding-bottom: 5px; }
-.langs a[aria-current="page"] { color: var(--minuit); background: var(--sable); }
-.langs a:hover { color: var(--minuit); }
 .login { text-decoration: none; font-weight: 600; font-size: 0.9375rem; }
 .login:hover { text-decoration: underline; }
 
@@ -149,11 +139,10 @@ button { font: inherit; color: inherit; }
 .menu-panel a { padding: 10px 12px; border-radius: 8px; text-decoration: none; font-weight: 500; }
 .menu-panel a:hover { background: var(--sable); }
 .menu-panel hr { border: 0; border-top: 1px solid var(--rule); margin: 6px 0; width: 100%; }
-.menu-panel .langs { padding: 6px 8px; }
 
-@media (max-width: 1080px) { .nav { display: none; } }
 @media (max-width: 720px) {
-  .header-end .langs, .header-end .login, .header-end .btn { display: none; }
+  .header-end .login, .header-end .btn { display: none; }
+  .header-end { gap: 10px; }
   .menu { display: block; }
 }
 
@@ -466,8 +455,6 @@ button { font: inherit; color: inherit; }
 .footer ul { display: grid; gap: 8px; }
 .footer a { text-decoration: none; }
 .footer a:hover { color: var(--jasmin); text-decoration: underline; }
-.footer .langs a { color: var(--ink-on-dark); }
-.footer .langs a[aria-current="page"] { color: var(--minuit); background: var(--jasmin); }
 .footer-base { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule-dark); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.8125rem; }
 @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > :first-child { grid-column: 1 / -1; } }
 
@@ -482,13 +469,12 @@ button { font: inherit; color: inherit; }
   transition: opacity var(--t-standard) var(--ease), translate var(--t-standard) var(--ease);
 }
 
-/* Counters (article numbers, note numbers, nav and step numerals) use DM Sans
+/* Counters (article numbers, note numbers, step numerals) use DM Sans
    figures: Cormorant's old-style digits read as small caps at these sizes.
    Kept last so it wins over the component rules above. */
-.art-no, .note-no, .nav-no, .steps li::before { font-family: var(--font-voice); font-variant-numeric: tabular-nums; }
+.art-no, .note-no, .steps li::before { font-family: var(--font-voice); font-variant-numeric: tabular-nums; }
 .art-no { font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; }
-.nav-no { font-size: 0.75rem; font-weight: 500; }
-:lang(ar) .art-no, :lang(ar) .note-no, :lang(ar) .nav-no { font-family: var(--font-voice-ar); font-size: 0.9375rem; }
+:lang(ar) .art-no, :lang(ar) .note-no { font-family: var(--font-voice-ar); font-size: 0.9375rem; }
 
 /* Cormorant Garamond's x-height is ~0.40 of its size against ~0.48 for the
    faces it replaced, so at equal font-size it reads ~20% smaller. Normalise
@@ -499,4 +485,37 @@ button { font: inherit; color: inherit; }
 }
 :lang(ar).h1, :lang(ar).h2, :lang(ar) .h1, :lang(ar) .h2, .law:lang(ar), .plain-quote:lang(ar), .doc-title:lang(ar), .doc-art h4:lang(ar), .lang-line span[lang="ar"], :lang(ar) .hero-note b {
   font-size-adjust: none;
+}
+
+/* Language dropdown */
+.lang-menu { position: relative; }
+.lang-menu summary {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+  height: 40px; padding-inline: 10px 8px; border-radius: 10px; border: 1px solid transparent;
+  font-size: 0.9375rem; font-weight: 500; color: var(--ink-soft);
+  transition: border-color var(--t-quick) var(--ease), color var(--t-quick) var(--ease), background var(--t-quick) var(--ease);
+}
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary:hover, .lang-menu[open] summary { color: var(--minuit); border-color: var(--rule); background: var(--white); }
+.lang-menu svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lang-menu .globe { width: 18px; height: 18px; }
+.lang-menu .chev { width: 16px; height: 16px; transition: transform var(--t-quick) var(--ease); }
+.lang-menu[open] .chev { transform: rotate(180deg); }
+.lang-menu span:lang(ar) { font-family: var(--font-voice-ar); }
+.lang-list {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 45; min-width: 168px;
+  padding: 6px; background: var(--white); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.lang-list a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 8px; text-decoration: none; color: var(--minuit); font-weight: 500; }
+.lang-list a:lang(ar) { font-family: var(--font-voice-ar); }
+.lang-list a:hover { background: var(--sable); }
+.lang-list a[aria-current="page"] { font-weight: 700; }
+.lang-list a[aria-current="page"]::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--kef); }
+.lang-menu.up .lang-list { top: auto; bottom: calc(100% + 8px); }
+.footer .lang-menu summary { color: var(--ink-on-dark); }
+.footer .lang-menu summary:hover, .footer .lang-menu[open] summary { color: var(--jasmin); background: transparent; border-color: var(--rule-dark); }
+@media (max-width: 720px) { .header .lang-menu summary > span { display: none; } }
+@media (max-width: 720px) {
+  .footer-base { flex-direction: column; align-items: flex-start; }
+  .footer .lang-list { inset-inline-end: auto; inset-inline-start: 0; }
 }

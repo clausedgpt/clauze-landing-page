@@ -10,13 +10,6 @@ export const fr = {
   },
   nav: {
     skip: "Aller au contenu",
-    sections: [
-      { id: "recherche", label: "Recherche" },
-      { id: "assistant", label: "Assistant" },
-      { id: "revue", label: "Revue" },
-      { id: "redaction", label: "Rédaction" },
-      { id: "cabinet", label: "Cabinet" },
-    ],
     login: "Se connecter",
     cta: "Demander un accès",
     menu: "Menu",
