@@ -1,33 +1,41 @@
+import type { ComponentType, SVGProps } from "react";
 import { notFound } from "next/navigation";
 import { AssistantDemo } from "@/components/assistant-demo";
 import { Footer, Header } from "@/components/chrome";
-import { CheckDemo, DraftingDemo, FirmDemo, ReviewDemo, SearchDemo } from "@/components/demos";
-import { IconArrow, IconPlay } from "@/components/icons";
-import { type PlatformPanel, PlatformTabs } from "@/components/platform-tabs";
+import { Counter } from "@/components/counter";
+import {
+  IconArrow,
+  IconBadge,
+  IconCheck,
+  IconEyeOff,
+  IconLanguages,
+  IconLayers,
+  IconLock,
+  IconPlay,
+  IconShield,
+} from "@/components/icons";
+import { Pattern } from "@/components/pattern";
+import { Showcase } from "@/components/showcase";
 import { APP_URL, CONTACT_EMAIL, getDictionary, isLocale } from "@/lib/i18n";
 import { testimonials } from "@/lib/testimonials";
 
-// Outline (docs/research/landing-page-outlines.md, option 1 "platform tabs"):
-// hero → corpus strip → platform tabs → Tunisian law first → trust → film →
-// (testimonials, once real) → access.
+const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+  corpus: IconLayers,
+  langs: IconLanguages,
+  force: IconBadge,
+  check: IconCheck,
+  lock: IconLock,
+  eye: IconEyeOff,
+  shield: IconShield,
+};
+
+// Layout after the legal-tech research (docs/research/landing-page-outlines.md):
+// short hero over a patterned ground → fact strip → looping product showcase →
+// Tunisian-law band → trust one-liners → film → FAQ → closing CTA.
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang);
-
-  const [search, assistant, review, drafting, firm] = t.platform.tabs;
-  const panels: PlatformPanel[] = [
-    { id: "recherche", label: search, title: t.search.title, body: t.search.body, points: t.search.notes,
-      demo: <div className="dark demo-dark"><SearchDemo t={t.search} /></div> },
-    { id: "assistant", label: assistant, title: t.check.title, body: t.check.body, points: t.check.notes,
-      demo: <CheckDemo t={t.check} a={t.assistant} /> },
-    { id: "revue", label: review, title: t.review.title, body: t.review.body, points: t.review.notes,
-      demo: <ReviewDemo t={t.review} /> },
-    { id: "redaction", label: drafting, title: t.drafting.title, body: t.drafting.body, points: t.drafting.notes,
-      demo: <DraftingDemo t={t.drafting} /> },
-    { id: "cabinet", label: firm, title: t.firm.title, body: t.firm.body, points: t.firm.notes,
-      demo: <FirmDemo t={t.firm} /> },
-  ];
 
   return (
     <>
@@ -36,8 +44,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       <main id="main">
         <section className="hero" aria-labelledby="hero-h">
+          <Pattern id="hero-pattern" className="pattern-hero" />
+          <div className="hero-glow" aria-hidden="true" />
           <div className="wrap hero-grid">
-            <div>
+            <div className="hero-copy">
               <h1 id="hero-h" className="h1">{t.hero.title}</h1>
               <p className="lede">{t.hero.lede}</p>
               <div className="actions">
@@ -50,78 +60,90 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   {t.hero.secondary}
                 </a>
               </div>
-              <p className="hero-note">{t.hero.note}</p>
             </div>
-            <AssistantDemo t={t.assistant} />
+            <div className="hero-visual">
+              <AssistantDemo t={t.assistant} />
+              <span className="float-chip chip-a" aria-hidden="true">
+                <IconLayers />
+                {t.hero.chips.corpus}
+              </span>
+              <span className="float-chip chip-b" aria-hidden="true">
+                <IconCheck />
+                {t.hero.chips.verified}
+              </span>
+              <span className="float-chip chip-c" aria-hidden="true">
+                <IconLanguages />
+                {t.hero.chips.langs}
+              </span>
+            </div>
           </div>
         </section>
 
-        <div className="strip" aria-label={t.strip.join(", ")}>
-          <div className="wrap strip-row">
-            {t.strip.map((s) => (
-              <span key={s}>{s}</span>
-            ))}
-          </div>
+        <div className="facts-strip">
+          <ul className="wrap facts-row">
+            {t.facts.map((f) => {
+              const I = ICONS[f.icon];
+              return (
+                <li key={f.text}>
+                  <I />
+                  <span>{f.text}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         <section id="plateforme" className="section" aria-labelledby="plateforme-h">
           <div className="wrap">
-            <div className="section-head">
-              <h2 id="plateforme-h" className="h2">{t.platform.title}</h2>
-              <p className="body">{t.platform.lede}</p>
+            <div className="section-head center">
+              <h2 id="plateforme-h" className="h2">{t.showcase.title}</h2>
+              <p className="body">{t.showcase.lede}</p>
             </div>
-            <PlatformTabs panels={panels} label={t.platform.title} />
+            <Showcase items={t.showcase.items} scenes={t.scenes} />
           </div>
         </section>
 
-        <section id="droit-tunisien" className="section sable" aria-labelledby="local-h">
-          <div className="wrap split">
-            <div className="section-head">
+        <section id="droit-tunisien" className="section band" aria-labelledby="local-h">
+          <Pattern id="band-pattern" className="pattern-band" />
+          <div className="wrap band-grid">
+            <div>
               <h2 id="local-h" className="h2">{t.local.title}</h2>
-              <p className="body">{t.local.body}</p>
-              <div className="lang-lines">
-                {t.languages.samples.map((s) => (
-                  <p key={s.lang} className="lang-line" dir={s.lang === "ar" ? "rtl" : "ltr"}>
-                    <small lang="en">{s.lang}</small>
-                    <span lang={s.lang}>{s.text}</span>
-                  </p>
-                ))}
-              </div>
+              <p className="band-count">
+                <Counter value={73635} locale={lang} />
+                <span className="band-label">{t.local.counter}</span>
+              </p>
             </div>
-            <dl className="facts">
+            <ul className="band-points">
               {t.local.points.map((p) => (
-                <div key={p.title} className="fact">
-                  <dt>{p.title}</dt>
-                  <dd>{p.text}</dd>
-                </div>
+                <li key={p}>
+                  <IconCheck />
+                  <span>{p}</span>
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
         </section>
 
         <section id="confiance" className="section" aria-labelledby="trust-h">
           <div className="wrap">
-            <div className="section-head">
-              <h2 id="trust-h" className="h2">{t.trust.title}</h2>
-              <p className="body">{t.trust.body}</p>
-            </div>
-            <dl className="facts facts-grid">
-              {t.trust.points.map((p) => (
-                <div key={p.title} className="fact">
-                  <dt>{p.title}</dt>
-                  <dd>{p.text}</dd>
-                </div>
-              ))}
-            </dl>
+            <h2 id="trust-h" className="h2 center-h">{t.trust.title}</h2>
+            <ul className="trust-row">
+              {t.trust.points.map((p) => {
+                const I = ICONS[p.icon];
+                return (
+                  <li key={p.text}>
+                    <span className="trust-icon"><I /></span>
+                    <span>{p.text}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </section>
 
         <section id="film" className="section dark" aria-labelledby="film-h">
           <div className="wrap">
-            <div className="section-head">
-              <h2 id="film-h" className="h2">{t.film.title}</h2>
-              <p className="body">{t.film.body}</p>
-            </div>
+            <h2 id="film-h" className="h2 center-h">{t.film.title}</h2>
             <div className="film">
               <video controls playsInline preload="metadata" src="/clauze-promo.mp4#t=5.5" aria-label={t.film.play} />
             </div>
@@ -141,26 +163,38 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </section>
         )}
 
-        <section id="acces" className="section dark close" aria-labelledby="acces-h">
-          <div className="wrap split">
-            <div className="section-head">
-              <h2 id="acces-h" className="h2">{t.close.title}</h2>
-              <div className="actions">
-                <a className="btn btn-lg" href={`${APP_URL}/signup`}>
-                  {t.close.cta}
-                  <IconArrow className="dir" />
-                </a>
-              </div>
-              <p className="contact">
-                {t.close.contact}{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} dir="ltr">{CONTACT_EMAIL}</a>
-              </p>
-            </div>
-            <ol className="steps">
-              {t.close.steps.map((s) => (
-                <li key={s}>{s}</li>
+        <section id="faq" className="section" aria-labelledby="faq-h">
+          <div className="wrap faq-grid">
+            <h2 id="faq-h" className="h2">{t.faq.title}</h2>
+            <div className="faq-list">
+              {t.faq.items.map((f, i) => (
+                <details key={f.q} className="faq-item" open={i === 0}>
+                  <summary>
+                    <span>{f.q}</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+                  </summary>
+                  <p>{f.a}</p>
+                </details>
               ))}
-            </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="acces" className="section dark close" aria-labelledby="acces-h">
+          <Pattern id="close-pattern" className="pattern-dark" />
+          <div className="wrap close-inner">
+            <h2 id="acces-h" className="h2">{t.close.title}</h2>
+            <p className="body">{t.close.line}</p>
+            <div className="actions">
+              <a className="btn btn-lg" href={`${APP_URL}/signup`}>
+                {t.close.cta}
+                <IconArrow className="dir" />
+              </a>
+            </div>
+            <p className="contact">
+              {t.close.contact}{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} dir="ltr">{CONTACT_EMAIL}</a>
+            </p>
           </div>
         </section>
       </main>

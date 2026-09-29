@@ -34,9 +34,9 @@ export function AssistantDemo({ t }: Props) {
   }
 
   return (
-    <div ref={root} className="panel panel-dark" style={style}>
+    <div ref={root} className="panel" style={style}>
       <div className="panel-bar">
-        <Logo tone="dark" />
+        <Logo />
         {t.label}
       </div>
       <div ref={body} className="panel-body" style={{ position: "relative" }}>

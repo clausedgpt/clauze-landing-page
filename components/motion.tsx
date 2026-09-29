@@ -59,6 +59,49 @@ export function useTimeline(ref: RefObject<HTMLElement | null>, schedule: number
   return { step, playing, style: { ["--step" as string]: step } as CSSProperties };
 }
 
+/**
+ * Like useTimeline, but loops while the element is on screen: steps play on
+ * `schedule`, the end state holds for `hold` ms, then everything resets to
+ * step 0 and plays again. Pauses off screen; static final state without motion.
+ */
+export function useLoop(ref: RefObject<HTMLElement | null>, schedule: number[], hold = 2600) {
+  const total = schedule.length;
+  const [step, setStep] = useState(0);
+  const key = schedule.join(",");
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!motionAllowed()) {
+      setStep(total);
+      return;
+    }
+    let timers: number[] = [];
+    const stop = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+    };
+    const play = () => {
+      stop();
+      setStep(0);
+      schedule.forEach((delay, i) => timers.push(window.setTimeout(() => setStep(i + 1), delay + 350)));
+      timers.push(window.setTimeout(play, (schedule[total - 1] ?? 0) + 350 + hold));
+    };
+    const io = new IntersectionObserver(
+      ([e]) => (e.isIntersecting ? play() : stop()),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      stop();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, hold]);
+
+  return { step, style: { ["--step" as string]: step } as CSSProperties };
+}
+
 /** Types `text` out once `active`; renders it whole when motion is off. */
 export function Typed({ text, active, cps = 34 }: { text: string; active: boolean; cps?: number }) {
   const [n, setN] = useState(text.length);

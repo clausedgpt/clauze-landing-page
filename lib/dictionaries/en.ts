@@ -4,7 +4,7 @@ export const en: Dict = {
   meta: {
     title: "Clauze · The legal platform for Tunisian law firms",
     description:
-      "Search 73,635 Tunisian legal texts in Arabic and French. Sourced answers with citations checked against the source, document review, contract drafting and firm management.",
+      "Search 73,635 Tunisian legal texts in Arabic and French. Sourced answers with checked citations, document review, contract drafting and firm management.",
   },
   nav: {
     skip: "Skip to content",
@@ -16,37 +16,10 @@ export const en: Dict = {
   },
   hero: {
     title: "Tunisian law, checkable at the source.",
-    lede:
-      "Clauze answers your legal questions from Tunisian legislation and case law, and every citation is checked against the article's text before you see it.",
+    lede: "Research, sourced answers and firm management, in Arabic and French.",
     cta: "Request access",
     secondary: "Watch the film",
-    note: "For Tunisian lawyers and law firms.",
-  },
-  strip: ["73,635 texts", "Legislation and case law", "Arabic and French"],
-  platform: {
-    title: "All of your firm's work, on one platform.",
-    lede: "From research to the client's file, every tool speaks the same law and the same language as you.",
-    tabs: ["Search", "Assistant", "Review", "Drafting", "Firm"],
-  },
-  local: {
-    title: "Built for Tunisian law, first.",
-    body: "Clauze doesn't adapt a foreign tool: it starts from Tunisian texts, in both of their languages.",
-    points: [
-      { title: "73,635 texts", text: "Tunisian legislation and case law, in Arabic and French." },
-      { title: "One search, two languages", text: "A question asked in French also finds the ruling written in Arabic." },
-      { title: "In force or not", text: "Every result says so, before you even open it." },
-      { title: "Your working language", text: "Interface in French, Arabic or English, with a real right-to-left layout." },
-    ],
-  },
-  trust: {
-    title: "Nothing taken on trust.",
-    body: "A legal answer is only as good as its source. Clauze shows you what was checked, and keeps your documents to yourself.",
-    points: [
-      { title: "Checked citations", text: "Every quote is compared with the article's text; only the ones that match become links." },
-      { title: "Private documents", text: "A review is visible only to you and the colleagues you choose to share it with." },
-      { title: "Content-free logs", text: "The content of your documents and contracts is never copied into audit logs." },
-      { title: "Approved access", text: "Every firm is approved by the Clauze team before it gets access." },
-    ],
+    chips: { corpus: "73,635 texts", verified: "Citation checked", langs: "FR · عربي · EN" },
   },
   assistant: {
     label: "Legal assistant",
@@ -67,147 +40,87 @@ export const en: Dict = {
     verified: "Quote checked against the source",
     input: "Ask your legal question…",
   },
-  search: {
-    title: "All of Tunisian law, in one search.",
-    body: "Clauze's corpus holds 73,635 texts: legislation and case law, in Arabic and French, searched together. A question asked in French also finds the ruling written in Arabic, and every result says whether it is in force.",
-    query: "bail commercial indemnité d'éviction",
-    count: "Results · legislation and case law",
-    results: [
-      {
-        title:
-          "Loi n° 77-37 du 25 mai 1977 réglant les rapports entre bailleurs et locataires des immeubles ou locaux à usage commercial, industriel ou artisanal",
-        lang: "fr",
-        tags: ["Legislation", "FR"],
-        inForce: true,
-      },
-      {
-        title:
-          "قانون عدد 37 لسنة 1977 مؤرخ في 25 ماي 1977 يتعلق بتنظيم العلاقات بين المالكين والمتسوغين في ما يخص تجديد كراء العقارات أو المحلات ذات الاستعمال التجاري أو الصناعي أو الحرفي",
-        lang: "ar",
-        tags: ["Legislation", "AR"],
-        inForce: true,
-      },
-      {
-        title: "Cour de cassation · Arrêt civil · Bail commercial : indemnité d'éviction due au locataire",
-        lang: "fr",
-        tags: ["Case law", "FR", "Holding available"],
-        inForce: false,
-      },
-      {
-        title: "محكمة التعقيب · قرار مدني · غرامة الحرمان المستحقة للمتسوغ",
-        lang: "ar",
-        tags: ["Case law", "AR", "Holding available"],
-        inForce: false,
-      },
+  facts: [
+    { icon: "corpus", text: "73,635 Tunisian texts" },
+    { icon: "langs", text: "Arabic and French" },
+    { icon: "force", text: "In force, flagged" },
+    { icon: "check", text: "Checked citations" },
+  ],
+  showcase: {
+    title: "One platform. The whole firm.",
+    lede: "Five tools, one body of law: yours.",
+    items: [
+      { id: "recherche", label: "Search", line: "All of Tunisian law, in one search." },
+      { id: "assistant", label: "Assistant", line: "Answers where every citation is checked." },
+      { id: "revue", label: "Review", line: "Every finding points to its page." },
+      { id: "redaction", label: "Drafting", line: "Describe the change, accept it." },
+      { id: "cabinet", label: "Firm", line: "Matters, fees and hearings." },
     ],
+  },
+  scenes: {
+    query: "commercial lease",
+    question: "Limitation period?",
+    verified: "Checked",
     inForce: "In force",
-    notes: [
-      "73,635 Tunisian texts, legislation and case law.",
-      "Search by meaning, not just by words: Arabic and French answer each other.",
-      "Every result says whether it is in force, before you open it.",
-    ],
-  },
-  check: {
-    title: "A citation only becomes a link once it is checked.",
-    body: "Before showing an answer, Clauze compares every quote with the article's actual text. When the excerpt matches, it becomes a link to the exact source. When it doesn't, it stays plain text, so you can see at a glance what was checked. The answer comes back in your language.",
-    verifiedLabel: "Checked · links to the article",
-    plainLabel: "Not checked · plain text",
-    plainText: "“the period is reduced to three years in commercial matters”",
-    hint: "Hover or select  to see the check.",
-    notes: [
-      "The check is done by code, never on the model's word.",
-      "Answers come in French, Arabic or English.",
-    ],
-  },
-  review: {
-    title: "Upload a contract. Every finding points to its page.",
-    body: "PDF, scanned PDF or .docx: Clauze reads the document page by page, then answers your questions citing the page each finding comes from. Your documents stay private unless you choose to share the review.",
-    file: "bail_commercial.pdf · 6 pages",
-    reading: "Reading 6 pages…",
-    question: "Which clauses put my client at risk?",
-    summary: "3 clauses need your attention",
-    findings: [
-      { ref: "Art. 9", text: "The lessor may terminate without notice.", page: 4 },
-      { ref: "Art. 7", text: "The late-payment penalty has no cap.", page: 3 },
-      { ref: "Art. 6", text: "Rent revision is at the lessor's sole discretion.", page: 3 },
-    ],
     page: "p.",
-    notes: [
-      "Your documents stay private to your review.",
-      "Share a review with a colleague, to view or to edit.",
-    ],
-  },
-  drafting: {
-    title: "Start from a template. Describe the change.",
-    body: "Pick a contract template in French or Arabic, fill in the fields, then ask for a change in one sentence. Clauze proposes a tracked edit; nothing is applied until you accept it, and every version is kept. The contract then exports to PDF.",
-    doc: "Contrat de bail commercial",
-    instruction: "Extend the lease term to three years.",
-    articleHeading: "Article 5 · Durée",
-    before: "La durée du présent bail est fixée à ",
+    findings: ["Termination without notice", "Uncapped late penalty", "Rent revised at will"],
+    instruction: "Extend the term to three years",
     removed: "deux (2) ans",
     added: "trois (3) ans",
-    after: ", à compter de la date de sa signature par les deux parties.",
-    proposed: "Proposed edit · Article 5",
     accept: "Accept",
-    decline: "Decline",
-    accepted: "Accepted · saved as version 4",
-    declined: "Declined · the text is unchanged",
-    undo: "Review the proposal again",
-    exported: "bail_commercial_v4.pdf",
-    notes: [
-      "Contract templates in French and Arabic.",
-      "Every saved version is kept; restoring an old one erases nothing.",
-      "PDF export, to download or attach straight to a matter.",
-    ],
-    context: [
-      { heading: "Article 4 · Destination des lieux", text: "Les lieux loués sont destinés exclusivement à l'exercice d'une activité commerciale de vente au détail." },
-      { heading: "Article 6 · Loyer", text: "Le loyer annuel convenu entre les parties est payable par mensualités, d'avance, au domicile du bailleur." },
-    ],
-  },
-  firm: {
-    title: "Matters, fees and hearings, in one place.",
-    body: "Track what each client owes you, their payments and due dates, to the millime. The calendar holds your hearings and meetings, and Clauze reminds you the day before.",
-    demo: "Fictional demo data",
-    matters: [
-      { client: "Ben Salah SARL", matter: "Lease dispute", balance: "4,500.000 TND", status: "late" },
-      { client: "Karim Trabelsi", matter: "Labour claim", balance: "2,000.000 TND", status: "open" },
-      { client: "Atlas Import", matter: "Debt recovery", balance: "0.000 TND", status: "paid" },
-      { client: "Sfax Textiles", matter: "Incorporation", balance: "1,200.000 TND", status: "draft" },
-    ],
-    statuses: { late: "Overdue", open: "Open", paid: "Paid", draft: "Draft" },
-    columns: { client: "Client", matter: "Matter", balance: "Balance" },
-    month: "October 2026",
-    weekdays: ["M", "T", "W", "T", "F", "S", "S"],
+    version: "Version 4",
     reminder: "Hearing tomorrow · 09:00",
-    reminderWhere: "Ben Salah SARL · Tribunal de première instance de Tunis",
-    notes: [
-      "Balances are computed from recorded payments, never typed in by hand.",
-      "In-app reminder the day before every hearing.",
-    ],
+    month: "October",
+    weekdays: ["M", "T", "W", "T", "F", "S", "S"],
   },
-  languages: {
-    title: "In the language you work in.",
-    body: "The whole interface comes in French, Arabic and English, with a real right-to-left layout. Everyone in the firm picks their own; legal texts stay in their original language.",
-    samples: [
-      { lang: "fr", text: "Analyse de documents" },
-      { lang: "ar", text: "تحليل المستندات" },
-      { lang: "en", text: "Document review" },
+  local: {
+    title: "Built for Tunisian law.",
+    counter: "statutes and rulings",
+    points: ["Legislation and case law", "Arabic and French, together", "Interface FR · عربي · EN"],
+  },
+  trust: {
+    title: "Nothing taken on trust.",
+    points: [
+      { icon: "check", text: "Every quote compared with the article's text" },
+      { icon: "lock", text: "Your reviews stay private" },
+      { icon: "eye", text: "No document content in audit logs" },
+      { icon: "shield", text: "Every firm approved before access" },
     ],
   },
   film: {
     title: "Clauze, in one film.",
-    body: "Search, assistant, review, drafting and firm tools, in the order you'll use them.",
     play: "Play the film",
+  },
+  faq: {
+    title: "Frequently asked questions",
+    items: [
+      {
+        q: "Which texts does Clauze rely on?",
+        a: "73,635 Tunisian texts: legislation and case law, in Arabic and French. Every result says whether it is in force, and a question asked in French also finds the ruling written in Arabic.",
+      },
+      {
+        q: "How are citations checked?",
+        a: "Before showing an answer, Clauze compares every quote with the article's actual text. Only the quotes that match become links to the source; the others stay plain text.",
+      },
+      {
+        q: "Do my documents stay confidential?",
+        a: "Yes. A review is visible only to you and the colleagues you choose to share it with, and the content of your documents and contracts is never copied into audit logs.",
+      },
+      {
+        q: "Which languages does Clauze work in?",
+        a: "The interface comes in French, Arabic (right to left) and English; each user picks their own. The corpus and contract templates are in Arabic and French.",
+      },
+      {
+        q: "How do I get access, and what does it cost?",
+        a: "Fill in the request online: the Clauze team approves your firm, then you log in at app.clauze.tn. There are several plans depending on firm size; write to us to discuss.",
+      },
+    ],
   },
   close: {
     title: "Request access for your firm.",
-    steps: [
-      "You fill in the request online.",
-      "The Clauze team approves your firm.",
-      "You log in at app.clauze.tn.",
-    ],
+    line: "Approved by the Clauze team, then log in at app.clauze.tn.",
     cta: "Request access",
-    contact: "Want a demo for your team? Write to us at",
+    contact: "Want a demo for your team?",
   },
   footer: {
     tagline: "The legal platform for Tunisian law firms.",
