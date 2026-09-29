@@ -184,7 +184,7 @@ button { font: inherit; color: inherit; }
 }
 .float-chip svg { width: 18px; height: 18px; color: var(--carthage); }
 .chip-a { top: -58px; inset-inline-start: 28px; }
-.chip-b { top: 46%; inset-inline-end: -34px; }
+.chip-b { top: -58px; inset-inline-end: 28px; }
 .chip-c { bottom: -20px; inset-inline-start: 14%; }
 .motion .float-chip { animation: float 6s var(--ease-soft) infinite alternate; }
 .motion .chip-b { animation-delay: -2s; }
