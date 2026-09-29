@@ -1,7 +1,5 @@
-import type { ReactNode } from "react";
 import type { Dict } from "@/lib/dictionaries/fr";
 import { APP_URL, CONTACT_EMAIL, type Locale } from "@/lib/i18n";
-import { Annotated } from "./annotated";
 import { IconMenu, Logo } from "./icons";
 import { LangMenu } from "./lang-menu";
 
@@ -30,35 +28,6 @@ export function Header({ t, lang }: { t: Dict["nav"]; lang: Locale }) {
         </div>
       </div>
     </header>
-  );
-}
-
-/** One article of the annotated code: main text column + margin column. */
-export function Article({
-  id,
-  no,
-  title,
-  body,
-  notes,
-  tone,
-  children,
-  after,
-}: {
-  id: string;
-  no: string;
-  title: string;
-  body?: string;
-  notes?: string[];
-  tone?: "dark" | "sable";
-  children?: ReactNode;
-  after?: ReactNode;
-}) {
-  return (
-    <section id={id} className={`article ${tone ?? ""}`} aria-labelledby={`${id}-h`}>
-      <Annotated id={id} no={no} title={title} body={body} notes={notes} after={after}>
-        {children}
-      </Annotated>
-    </section>
   );
 }
 

@@ -147,62 +147,63 @@ button { font: inherit; color: inherit; }
 }
 
 /* ── Article grid: text column + margin column ─────────────── */
-.article { position: relative; padding-block: clamp(72px, 10vw, 136px); }
-.article + .article { border-top: 1px solid var(--rule); }
-.article-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--margin-col);
-  column-gap: var(--col-gap);
-}
-.margin {
-  border-inline-start: 1px solid var(--rule);
-  padding-inline-start: 24px;
-  display: flex; flex-direction: column; gap: 28px;
-}
-.art-no {
-  font-family: var(--font-law); font-weight: 600; font-size: 1rem; color: var(--medina);
-  display: flex; align-items: baseline; gap: 10px;
-}
-.art-no::before { content: ""; width: 24px; height: 1px; background: currentColor; align-self: center; margin-inline-start: -24px; }
-.notes { display: grid; gap: 18px; }
-.notes li { display: grid; grid-template-columns: 30px 1fr; font-size: 0.9375rem; line-height: 1.55; color: var(--ink-soft); transition: color var(--t-quick) var(--ease); }
-.note-no { font-family: var(--font-law); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--medina); width: fit-content; height: fit-content; border-radius: 4px; transition: color var(--t-quick) var(--ease), background var(--t-quick) var(--ease); }
-.notes li[data-on="true"] { color: var(--minuit); }
-.notes li[data-on="true"] .note-no { background: var(--kef); color: var(--minuit); padding-inline: 3px; margin-inline-start: -3px; }
-.dark .notes li[data-on="true"] { color: var(--jasmin); }
-.art-no:lang(ar), :lang(ar) .art-no, :lang(ar) .note-no { font-family: var(--font-law-ar); font-size: 1.15rem; }
-.call {
-  display: inline-flex; align-items: center; justify-content: center; vertical-align: 0.45em;
-  min-width: 17px; height: 17px; padding-inline: 4px; margin-inline: 2px 1px; border: 0; border-radius: 4px; cursor: pointer;
-  background: rgb(200 137 42 / 0.2); color: var(--kef-ink); font: 700 0.6875rem/1 var(--font-voice);
-  transition: background var(--t-quick) var(--ease), color var(--t-quick) var(--ease);
-}
-.call:hover, .call[aria-expanded="true"] { background: var(--kef); color: var(--minuit); }
-.dark .call { background: rgb(240 201 122 / 0.18); color: var(--kef-light); }
-.dark .call:hover, .dark .call[aria-expanded="true"] { background: var(--kef-light); color: var(--minuit); }
-.annotated { position: relative; }
-.main-col { min-width: 0; }
-.h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.12; letter-spacing: -0.012em; max-width: 20ch; }
+.section { position: relative; padding-block: clamp(80px, 10vw, 136px); }
+.section + .section { border-top: 1px solid var(--rule); }
+.section-head { max-width: 760px; }
+.h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.12; letter-spacing: -0.012em; max-width: 22ch; }
 :lang(ar) .h2, .h2:lang(ar) { font-family: var(--font-voice-ar); font-size: clamp(2rem, 3.6vw, 3.25rem); letter-spacing: 0; line-height: 1.3; font-weight: 600; }
-.body { margin-top: 22px; max-width: 60ch; font-size: 1.125rem; color: var(--ink-soft); }
-.demo-slot { margin-top: clamp(40px, 5vw, 64px); }
+.body { margin-top: 20px; max-width: 60ch; font-size: 1.125rem; color: var(--ink-soft); }
+.split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+@media (max-width: 960px) { .split { grid-template-columns: 1fr; } }
 
 .dark { background: var(--minuit); color: var(--jasmin); }
-.dark .margin { border-color: var(--rule-dark); }
-.dark .notes li, .dark .body { color: var(--ink-on-dark); }
-.dark .art-no, .dark .note-no { color: var(--ink-on-dark); }
-.dark + .article, .article + .dark { border-top: 0; }
+.dark .body { color: var(--ink-on-dark); }
+.dark + .section, .section + .dark, .sable + .section, .section + .sable { border-top: 0; }
 .dark + .dark { border-top: 1px solid var(--rule-dark); }
 .sable { background: var(--sable); }
-.sable + .article, .article + .sable { border-top: 0; }
 
-@media (max-width: 960px) {
-  .article-grid { grid-template-columns: 1fr; }
-  .margin { border-inline-start: 0; border-top: 1px solid var(--rule); padding-inline-start: 0; padding-top: 24px; margin-top: 48px; }
-  .dark .margin { border-color: var(--rule-dark); }
-  .margin-top { order: -1; border-top: 0; padding-top: 0; margin-top: 0; margin-bottom: 20px; }
-  .art-no::before { display: none; }
+/* Corpus strip under the hero */
+.strip { border-block: 1px solid var(--rule); background: var(--white); }
+.strip-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 0; padding-block: 18px; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.125rem, 1.6vw, 1.375rem); font-size-adjust: 0.48; color: var(--medina); }
+.strip-row span + span::before { content: "·"; margin-inline: 18px; color: var(--kef); }
+:lang(ar) .strip-row { font-family: var(--font-voice-ar); font-size-adjust: none; font-weight: 600; }
+
+/* Platform tabs */
+.ptabs { margin-top: clamp(36px, 5vw, 56px); }
+.ptab-list { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
+.ptab-list::-webkit-scrollbar { display: none; }
+.ptab {
+  flex: none; position: relative; padding: 14px 18px 16px; border: 0; background: none; cursor: pointer;
+  font-size: 1rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap;
+  transition: color var(--t-quick) var(--ease);
 }
+.ptab::after { content: ""; position: absolute; inset-inline: 12px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--minuit); transform: scaleX(0); transition: transform var(--t-standard) var(--ease); }
+.ptab:hover { color: var(--minuit); }
+.ptab[aria-selected="true"] { color: var(--minuit); }
+.ptab[aria-selected="true"]::after { transform: scaleX(1); }
+.ppanel { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: start; padding-top: clamp(32px, 4vw, 48px); }
+.ppanel[hidden] { display: none; }
+.motion .ppanel:not([hidden]) .ppanel-text { animation: panel-in var(--t-standard) var(--ease) both; }
+@keyframes panel-in { from { opacity: 0; translate: 0 8px; } }
+.ppanel-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.625rem, 2.4vw, 2.125rem); line-height: 1.15; font-size-adjust: 0.48; }
+:lang(ar) .ppanel-title { font-family: var(--font-voice-ar); font-size-adjust: none; font-weight: 600; line-height: 1.4; }
+.ppanel-body { margin-top: 16px; color: var(--ink-soft); font-size: 1.0625rem; }
+.ppanel-points { margin-top: 24px; display: grid; gap: 12px; }
+.ppanel-points li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; font-size: 0.9375rem; line-height: 1.55; }
+.ppanel-points svg { width: 18px; height: 18px; margin-top: 2px; color: var(--carthage); }
+.demo-dark { border-radius: 18px; padding: 0; background: transparent; }
+@media (max-width: 960px) { .ppanel { grid-template-columns: 1fr; } }
+
+/* Fact lists (Tunisian law, trust) */
+.facts { display: grid; }
+.fact { padding-block: 22px; border-top: 1px solid var(--rule); }
+.fact:last-child { border-bottom: 1px solid var(--rule); }
+.fact dt { font-family: var(--font-display); font-weight: 700; font-size: 1.375rem; font-size-adjust: 0.48; line-height: 1.25; }
+:lang(ar) .fact dt { font-family: var(--font-voice-ar); font-size-adjust: none; font-weight: 600; font-size: 1.1875rem; }
+.fact dd { margin: 6px 0 0; color: var(--ink-soft); max-width: 52ch; }
+.facts-grid { margin-top: clamp(36px, 5vw, 56px); grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 5vw, 72px); }
+.facts-grid .fact:nth-last-child(2) { border-bottom: 1px solid var(--rule); }
+@media (max-width: 720px) { .facts-grid { grid-template-columns: 1fr; } .facts-grid .fact:nth-last-child(2) { border-bottom: 0; } }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero { padding-block: clamp(48px, 7vw, 96px) clamp(72px, 9vw, 120px); }
@@ -212,8 +213,6 @@ button { font: inherit; color: inherit; }
 .lede { margin-top: 26px; font-size: clamp(1.125rem, 1.4vw, 1.25rem); color: var(--ink-soft); max-width: 44ch; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 36px; }
 .hero-note { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--rule); display: flex; gap: 14px; font-size: 0.9375rem; color: var(--ink-soft); max-width: 44ch; }
-.hero-note b { font-family: var(--font-law); color: var(--minuit); font-weight: 700; white-space: nowrap; }
-:lang(ar) .hero-note b { font-family: var(--font-law-ar); font-size: 1.1rem; }
 @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
 
 /* ── Demo surfaces (drawn in the app's own vocabulary) ─────── */
@@ -425,11 +424,11 @@ button { font: inherit; color: inherit; }
 @media (max-width: 860px) { .firm { grid-template-columns: 1fr; } .cal { border-inline-start: 0; border-top: 1px solid var(--rule); } }
 
 /* Languages */
-.lang-lines { margin-top: clamp(36px, 5vw, 56px); display: grid; }
+.lang-lines { margin-top: clamp(28px, 4vw, 44px); display: grid; }
 .lang-line { display: flex; align-items: baseline; gap: 20px; padding-block: 18px; border-top: 1px solid var(--rule); }
 .lang-line:last-child { border-bottom: 1px solid var(--rule); }
 .lang-line small { font-size: 0.8125rem; font-weight: 600; color: var(--medina); width: 36px; flex: none; text-transform: uppercase; }
-.lang-line span { font-family: var(--font-display); font-size: clamp(1.75rem, 4.4vw, 3.5rem); line-height: 1.15; letter-spacing: -0.01em; font-weight: 700; }
+.lang-line span { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.15; letter-spacing: -0.01em; font-weight: 700; }
 .lang-line span[lang="ar"] { font-family: var(--font-voice-ar); letter-spacing: 0; }
 
 /* Film */
@@ -438,11 +437,11 @@ button { font: inherit; color: inherit; }
 
 /* Close */
 .close { padding-block: clamp(96px, 12vw, 160px); }
-.steps { margin-top: 36px; display: grid; gap: 0; max-width: 560px; counter-reset: step; }
+.steps { display: grid; gap: 0; max-width: 560px; counter-reset: step; }
 .steps li { counter-increment: step; display: grid; grid-template-columns: 44px 1fr; padding-block: 16px; border-top: 1px solid var(--rule-dark); font-size: 1.0625rem; }
 .steps li:last-child { border-bottom: 1px solid var(--rule-dark); }
 .steps li::before { content: counter(step); font-family: var(--font-law); font-weight: 600; color: var(--ink-on-dark); font-variant-numeric: tabular-nums; }
-.close .actions { margin-top: 40px; }
+.close .actions { margin-top: 36px; }
 .contact { margin-top: 28px; color: var(--ink-on-dark); }
 .contact a { color: var(--jasmin); font-weight: 600; }
 
@@ -469,21 +468,19 @@ button { font: inherit; color: inherit; }
   transition: opacity var(--t-standard) var(--ease), translate var(--t-standard) var(--ease);
 }
 
-/* Counters (article numbers, note numbers, step numerals) use DM Sans
+/* Step numerals use DM Sans
    figures: Cormorant's old-style digits read as small caps at these sizes.
    Kept last so it wins over the component rules above. */
-.art-no, .note-no, .steps li::before { font-family: var(--font-voice); font-variant-numeric: tabular-nums; }
-.art-no { font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; }
-:lang(ar) .art-no, :lang(ar) .note-no { font-family: var(--font-voice-ar); font-size: 0.9375rem; }
+.steps li::before { font-family: var(--font-voice); font-variant-numeric: tabular-nums; }
 
 /* Cormorant Garamond's x-height is ~0.40 of its size against ~0.48 for the
    faces it replaced, so at equal font-size it reads ~20% smaller. Normalise
    its x-height instead of hand-bumping every size. Arabic runs use their own
    faces and are left alone. */
-.h1, .h2, .brand-word, .lang-line span, .corpus-line, .law, .plain-quote, .doc-title, .doc-art h4, .hero-note b {
+.h1, .h2, .brand-word, .lang-line span, .corpus-line, .law, .plain-quote, .doc-title, .doc-art h4 {
   font-size-adjust: 0.48;
 }
-:lang(ar).h1, :lang(ar).h2, :lang(ar) .h1, :lang(ar) .h2, .law:lang(ar), .plain-quote:lang(ar), .doc-title:lang(ar), .doc-art h4:lang(ar), .lang-line span[lang="ar"], :lang(ar) .hero-note b {
+:lang(ar).h1, :lang(ar).h2, :lang(ar) .h1, :lang(ar) .h2, .law:lang(ar), .plain-quote:lang(ar), .doc-title:lang(ar), .doc-art h4:lang(ar), .lang-line span[lang="ar"] {
   font-size-adjust: none;
 }
 

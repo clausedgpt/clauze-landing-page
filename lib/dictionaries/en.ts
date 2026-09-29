@@ -14,7 +14,6 @@ export const en: Dict = {
     close: "Close",
     language: "Language",
   },
-  articles: ["Article 1", "Art. 2", "Art. 3", "Art. 4", "Art. 5", "Art. 6", "Art. 7", "Art. 8"],
   hero: {
     title: "Tunisian law, checkable at the source.",
     lede:
@@ -22,6 +21,32 @@ export const en: Dict = {
     cta: "Request access",
     secondary: "Watch the film",
     note: "For Tunisian lawyers and law firms.",
+  },
+  strip: ["73,635 texts", "Legislation and case law", "Arabic and French"],
+  platform: {
+    title: "All of your firm's work, on one platform.",
+    lede: "From research to the client's file, every tool speaks the same law and the same language as you.",
+    tabs: ["Search", "Assistant", "Review", "Drafting", "Firm"],
+  },
+  local: {
+    title: "Built for Tunisian law, first.",
+    body: "Clauze doesn't adapt a foreign tool: it starts from Tunisian texts, in both of their languages.",
+    points: [
+      { title: "73,635 texts", text: "Tunisian legislation and case law, in Arabic and French." },
+      { title: "One search, two languages", text: "A question asked in French also finds the ruling written in Arabic." },
+      { title: "In force or not", text: "Every result says so, before you even open it." },
+      { title: "Your working language", text: "Interface in French, Arabic or English, with a real right-to-left layout." },
+    ],
+  },
+  trust: {
+    title: "Nothing taken on trust.",
+    body: "A legal answer is only as good as its source. Clauze shows you what was checked, and keeps your documents to yourself.",
+    points: [
+      { title: "Checked citations", text: "Every quote is compared with the article's text; only the ones that match become links." },
+      { title: "Private documents", text: "A review is visible only to you and the colleagues you choose to share it with." },
+      { title: "Content-free logs", text: "The content of your documents and contracts is never copied into audit logs." },
+      { title: "Approved access", text: "Every firm is approved by the Clauze team before it gets access." },
+    ],
   },
   assistant: {
     label: "Legal assistant",
@@ -44,7 +69,7 @@ export const en: Dict = {
   },
   search: {
     title: "All of Tunisian law, in one search.",
-    body: "Clauze's corpus holds 73,635 texts[1]: legislation and case law, in Arabic and French, searched together. A question asked in French also finds the ruling written in Arabic[2], and every result says whether it is in force[3].",
+    body: "Clauze's corpus holds 73,635 texts: legislation and case law, in Arabic and French, searched together. A question asked in French also finds the ruling written in Arabic, and every result says whether it is in force.",
     query: "bail commercial indemnité d'éviction",
     count: "Results · legislation and case law",
     results: [
@@ -84,11 +109,11 @@ export const en: Dict = {
   },
   check: {
     title: "A citation only becomes a link once it is checked.",
-    body: "Before showing an answer, Clauze compares every quote with the article's actual text[1]. When the excerpt matches, it becomes a link to the exact source. When it doesn't, it stays plain text, so you can see at a glance what was checked. The answer comes back in your language[2].",
+    body: "Before showing an answer, Clauze compares every quote with the article's actual text. When the excerpt matches, it becomes a link to the exact source. When it doesn't, it stays plain text, so you can see at a glance what was checked. The answer comes back in your language.",
     verifiedLabel: "Checked · links to the article",
     plainLabel: "Not checked · plain text",
     plainText: "“the period is reduced to three years in commercial matters”",
-    hint: "Hover or select [1] to see the check.",
+    hint: "Hover or select  to see the check.",
     notes: [
       "The check is done by code, never on the model's word.",
       "Answers come in French, Arabic or English.",
@@ -96,7 +121,7 @@ export const en: Dict = {
   },
   review: {
     title: "Upload a contract. Every finding points to its page.",
-    body: "PDF, scanned PDF or .docx: Clauze reads the document page by page, then answers your questions citing the page each finding comes from. Your documents stay private[1] unless you choose to share the review[2].",
+    body: "PDF, scanned PDF or .docx: Clauze reads the document page by page, then answers your questions citing the page each finding comes from. Your documents stay private unless you choose to share the review.",
     file: "bail_commercial.pdf · 6 pages",
     reading: "Reading 6 pages…",
     question: "Which clauses put my client at risk?",
@@ -114,7 +139,7 @@ export const en: Dict = {
   },
   drafting: {
     title: "Start from a template. Describe the change.",
-    body: "Pick a contract template in French or Arabic[1], fill in the fields, then ask for a change in one sentence. Clauze proposes a tracked edit; nothing is applied until you accept it, and every version is kept[2]. The contract then exports to PDF[3].",
+    body: "Pick a contract template in French or Arabic, fill in the fields, then ask for a change in one sentence. Clauze proposes a tracked edit; nothing is applied until you accept it, and every version is kept. The contract then exports to PDF.",
     doc: "Contrat de bail commercial",
     instruction: "Extend the lease term to three years.",
     articleHeading: "Article 5 · Durée",
@@ -141,7 +166,7 @@ export const en: Dict = {
   },
   firm: {
     title: "Matters, fees and hearings, in one place.",
-    body: "Track what each client owes you, their payments and due dates, to the millime[1]. The calendar holds your hearings and meetings, and Clauze reminds you the day before[2].",
+    body: "Track what each client owes you, their payments and due dates, to the millime. The calendar holds your hearings and meetings, and Clauze reminds you the day before.",
     demo: "Fictional demo data",
     matters: [
       { client: "Ben Salah SARL", matter: "Lease dispute", balance: "4,500.000 TND", status: "late" },
@@ -162,24 +187,17 @@ export const en: Dict = {
   },
   languages: {
     title: "In the language you work in.",
-    body: "The whole interface comes in French, Arabic and English, with a real right-to-left layout. Everyone in the firm picks their own[1]; legal texts stay in their original language[2].",
+    body: "The whole interface comes in French, Arabic and English, with a real right-to-left layout. Everyone in the firm picks their own; legal texts stay in their original language.",
     samples: [
       { lang: "fr", text: "Analyse de documents" },
       { lang: "ar", text: "تحليل المستندات" },
       { lang: "en", text: "Document review" },
     ],
-    notes: [
-      "Language is a per-user setting, in each account.",
-      "The corpus and contract templates are in Arabic and French.",
-    ],
   },
   film: {
     title: "Clauze, in one film.",
-    body: "Search, assistant, review, drafting and firm tools, in the order you'll use them[1].",
+    body: "Search, assistant, review, drafting and firm tools, in the order you'll use them.",
     play: "Play the film",
-    notes: [
-      "The clients and matters shown in the film are fictional.",
-    ],
   },
   close: {
     title: "Request access for your firm.",
@@ -190,11 +208,6 @@ export const en: Dict = {
     ],
     cta: "Request access",
     contact: "Want a demo for your team? Write to us at",
-    no: "Final provisions",
-    notes: [
-      "Access opens firm by firm, once the Clauze team has approved it.",
-      "Your colleagues' accounts are then added to your firm's workspace.",
-    ],
   },
   footer: {
     tagline: "The legal platform for Tunisian law firms.",

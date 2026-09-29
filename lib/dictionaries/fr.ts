@@ -16,7 +16,6 @@ export const fr = {
     close: "Fermer",
     language: "Langue",
   },
-  articles: ["Article premier", "Art. 2", "Art. 3", "Art. 4", "Art. 5", "Art. 6", "Art. 7", "Art. 8"],
   hero: {
     title: "Le droit tunisien, vérifiable à la source.",
     lede:
@@ -24,6 +23,32 @@ export const fr = {
     cta: "Demander un accès",
     secondary: "Voir le film",
     note: "Pour les avocats et les cabinets tunisiens.",
+  },
+  strip: ["73 635 textes", "Législation et jurisprudence", "Arabe et français"],
+  platform: {
+    title: "Tout le travail du cabinet, sur une seule plateforme.",
+    lede: "De la recherche au dossier du client, chaque outil parle le même droit et la même langue que vous.",
+    tabs: ["Recherche", "Assistant", "Revue", "Rédaction", "Cabinet"],
+  },
+  local: {
+    title: "Pensé pour le droit tunisien, d'abord.",
+    body: "Clauze n'adapte pas un outil étranger : il part des textes tunisiens, dans leurs deux langues.",
+    points: [
+      { title: "73 635 textes", text: "Législation et jurisprudence tunisiennes, en arabe et en français." },
+      { title: "Une recherche, deux langues", text: "Une question posée en français trouve aussi l'arrêt rédigé en arabe." },
+      { title: "En vigueur ou non", text: "Chaque résultat l'indique, avant même de l'ouvrir." },
+      { title: "Votre langue de travail", text: "Interface en français, en arabe ou en anglais, avec une vraie mise en page de droite à gauche." },
+    ],
+  },
+  trust: {
+    title: "Rien à croire sur parole.",
+    body: "Une réponse juridique ne vaut que par sa source. Clauze vous montre ce qui a été vérifié, et garde vos documents pour vous.",
+    points: [
+      { title: "Citations contrôlées", text: "Chaque citation est comparée au texte de l'article ; seules celles qui correspondent deviennent des liens." },
+      { title: "Documents privés", text: "Une revue n'est visible que par vous et les confrères avec qui vous choisissez de la partager." },
+      { title: "Journaux sans contenu", text: "Le contenu de vos documents et de vos contrats n'est jamais copié dans les journaux d'audit." },
+      { title: "Accès validé", text: "Chaque cabinet est validé par l'équipe Clauze avant d'accéder à la plateforme." },
+    ],
   },
   assistant: {
     label: "Assistant juridique",
@@ -46,7 +71,7 @@ export const fr = {
   },
   search: {
     title: "Toute la loi tunisienne, en une seule recherche.",
-    body: "Le corpus de Clauze compte 73 635 textes[1] : législation et jurisprudence, en arabe et en français, interrogés ensemble. Une question posée en français trouve aussi l'arrêt rédigé en arabe[2], et chaque résultat indique s'il est en vigueur[3].",
+    body: "Le corpus de Clauze compte 73 635 textes : législation et jurisprudence, en arabe et en français, interrogés ensemble. Une question posée en français trouve aussi l'arrêt rédigé en arabe, et chaque résultat indique s'il est en vigueur.",
     query: "bail commercial indemnité d'éviction",
     count: "Résultats · législation et jurisprudence",
     results: [
@@ -86,11 +111,11 @@ export const fr = {
   },
   check: {
     title: "Une citation n'est un lien que si elle est vérifiée.",
-    body: "Avant d'afficher une réponse, Clauze compare chaque citation au texte réel de l'article[1]. Si l'extrait correspond, il devient un lien vers la source exacte. Sinon, il reste en texte simple : vous voyez d'un coup d'œil ce qui a été contrôlé. La réponse vous parvient dans votre langue[2].",
+    body: "Avant d'afficher une réponse, Clauze compare chaque citation au texte réel de l'article. Si l'extrait correspond, il devient un lien vers la source exacte. Sinon, il reste en texte simple : vous voyez d'un coup d'œil ce qui a été contrôlé. La réponse vous parvient dans votre langue.",
     verifiedLabel: "Vérifiée · lien vers l'article",
     plainLabel: "Non vérifiée · texte simple",
     plainText: "« le délai est réduit à trois ans en matière commerciale »",
-    hint: "Survolez ou sélectionnez [1] pour voir la vérification.",
+    hint: "Survolez ou sélectionnez  pour voir la vérification.",
     notes: [
       "La vérification est faite par le code, pas sur la parole du modèle.",
       "Les réponses sont en français, en arabe ou en anglais.",
@@ -98,7 +123,7 @@ export const fr = {
   },
   review: {
     title: "Déposez un contrat. Chaque constat renvoie à sa page.",
-    body: "PDF, PDF scanné ou fichier .docx : Clauze lit le document page par page, puis répond à vos questions en citant la page d'où vient chaque constat. Vos documents restent privés[1], sauf si vous choisissez de partager la revue[2].",
+    body: "PDF, PDF scanné ou fichier .docx : Clauze lit le document page par page, puis répond à vos questions en citant la page d'où vient chaque constat. Vos documents restent privés, sauf si vous choisissez de partager la revue.",
     file: "bail_commercial.pdf · 6 pages",
     reading: "Lecture de 6 pages…",
     question: "Quelles clauses exposent mon client ?",
@@ -116,7 +141,7 @@ export const fr = {
   },
   drafting: {
     title: "Partez d'un modèle. Décrivez la modification.",
-    body: "Choisissez un modèle de contrat en français ou en arabe[1], remplissez les champs, puis demandez une modification en une phrase. Clauze propose une modification suivie ; rien n'est appliqué sans votre accord, et chaque version est conservée[2]. Le contrat s'exporte ensuite en PDF[3].",
+    body: "Choisissez un modèle de contrat en français ou en arabe, remplissez les champs, puis demandez une modification en une phrase. Clauze propose une modification suivie ; rien n'est appliqué sans votre accord, et chaque version est conservée. Le contrat s'exporte ensuite en PDF.",
     doc: "Contrat de bail commercial",
     instruction: "Porter la durée du bail à trois ans.",
     articleHeading: "Article 5 · Durée",
@@ -143,7 +168,7 @@ export const fr = {
   },
   firm: {
     title: "Dossiers, honoraires et audiences, au même endroit.",
-    body: "Suivez ce que chaque client vous doit, les paiements et les échéances, au millime près[1]. Le calendrier réunit vos audiences et vos rendez-vous, et Clauze vous le rappelle la veille[2].",
+    body: "Suivez ce que chaque client vous doit, les paiements et les échéances, au millime près. Le calendrier réunit vos audiences et vos rendez-vous, et Clauze vous le rappelle la veille.",
     demo: "Données fictives de démonstration",
     matters: [
       { client: "Ben Salah SARL", matter: "Litige de bail", balance: "4 500,000 DT", status: "late" },
@@ -164,24 +189,17 @@ export const fr = {
   },
   languages: {
     title: "Dans votre langue de travail.",
-    body: "Toute l'interface existe en français, en arabe et en anglais, avec une vraie mise en page de droite à gauche. Chaque membre du cabinet choisit la sienne[1] ; les textes de loi, eux, restent dans leur langue d'origine[2].",
+    body: "Toute l'interface existe en français, en arabe et en anglais, avec une vraie mise en page de droite à gauche. Chaque membre du cabinet choisit la sienne ; les textes de loi, eux, restent dans leur langue d'origine.",
     samples: [
       { lang: "fr", text: "Analyse de documents" },
       { lang: "ar", text: "تحليل المستندات" },
       { lang: "en", text: "Document review" },
     ],
-    notes: [
-      "La langue se règle par utilisateur, dans son compte.",
-      "Le corpus et les modèles de contrats sont en arabe et en français.",
-    ],
   },
   film: {
     title: "Clauze, en un film.",
-    body: "Recherche, assistant, revue, rédaction et cabinet, dans l'ordre où vous les utiliserez[1].",
+    body: "Recherche, assistant, revue, rédaction et cabinet, dans l'ordre où vous les utiliserez.",
     play: "Lire le film",
-    notes: [
-      "Les clients et dossiers montrés dans le film sont fictifs.",
-    ],
   },
   close: {
     title: "Demandez l'accès pour votre cabinet.",
@@ -192,11 +210,6 @@ export const fr = {
     ],
     cta: "Demander un accès",
     contact: "Une démonstration pour votre équipe ? Écrivez-nous à",
-    no: "Dispositions finales",
-    notes: [
-      "L'accès est ouvert cabinet par cabinet, après validation par l'équipe Clauze.",
-      "Les comptes de vos collaborateurs sont ensuite ajoutés à l'espace de votre cabinet.",
-    ],
   },
   footer: {
     tagline: "La plateforme juridique des cabinets tunisiens.",
