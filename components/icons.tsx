@@ -72,14 +72,14 @@ export const IconCursor = (p: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...p}><path d="M5 3l14 7.5-6.2 1.7L10 18.5z" fill="#0c1b2e" stroke="#fff" strokeWidth={1.4} strokeLinejoin="round" /></svg>
 );
 
-/** The Clauze mark: two nested arcs and the Kef dot (from clauze-icon.png). */
+/** The Clauze mark: two nested arcs and the Kef dot — same drawing as the app's ClauzeLogo. */
 export function Logo({ tone = "light", ...p }: SVGProps<SVGSVGElement> & { tone?: "light" | "dark" }) {
   const outer = tone === "dark" ? "#fdfaf4" : "#0c1b2e";
   return (
-    <svg viewBox="0 0 512 512" aria-hidden="true" {...p}>
-      <path d="M324 92a164 164 0 0 0 0 328" fill="none" stroke={outer} strokeWidth={36} strokeLinecap="round" />
-      <path d="M397 162a101 101 0 1 0 0 186" fill="none" stroke="#8b8e96" strokeWidth={18} strokeLinecap="round" />
-      <circle cx={162} cy={256} r={24} fill="#c8892a" />
+    <svg viewBox="-0.5 0 27.5 35" fill="none" aria-hidden="true" {...p}>
+      <path d="M18 1.5C18 1.5 2 4.5 2 17.5C2 30.5 18 33.5 18 33.5" stroke={outer} strokeWidth={3.2} strokeLinecap="round" />
+      <path d="M25 8.5C25 8.5 12 10.5 12 17.5C12 24.5 25 26.5 25 26.5" stroke="#80858b" strokeWidth={1.8} strokeLinecap="round" />
+      <circle cx={2} cy={17.5} r={2.3} fill="#c8892a" />
     </svg>
   );
 }
