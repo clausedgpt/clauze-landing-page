@@ -28,3 +28,4 @@ pnpm build && pnpm start
    - `www` → `CNAME` to the value Vercel shows (e.g. `cname.vercel-dns.com`)
    - Leave `app` → `A 31.70.150.159` untouched.
 4. Once DNS moves, the app server's nginx block that 301s `clauze.tn`/`www.clauze.tn` to the app stops receiving that traffic; it can be removed from `clauze-backend/deploy/nginx.conf` later, along with the old `clauze.tn` certificate.
+
