@@ -35,6 +35,8 @@ Besides the home page, the site has feature, use-case and comparison pages, an F
 
 The canonical host is `https://clauze.tn` (no `www`): in Vercel → Settings → Domains, `clauze.tn` must be the primary domain and `www.clauze.tn` must redirect to it.
 
+After this merges, run `bash scripts/seo-setup-wizard.sh`: it walks through the Vercel domain flip, Google Search Console and Bing verification (DNS), sitemap submission and the first IndexNow ping, checking each step from the terminal.
+
 ## Deploy on Vercel
 
 1. Push this folder to its own Git repo (or set Vercel's **Root Directory** to `clauze-landing-page` in a monorepo) and import it. Framework preset: Next.js, no env vars.
