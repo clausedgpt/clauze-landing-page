@@ -2,6 +2,7 @@
 
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 import type { Dict } from "@/lib/dictionaries/fr";
+import { IconArrow } from "./icons";
 import { Pattern } from "./pattern";
 import { AssistantScene, DraftingScene, FirmScene, ReviewScene, SearchScene } from "./scenes";
 
@@ -13,7 +14,18 @@ const DWELL = 8000;
  * progress bar on the active tab; hovering, focusing or choosing a tab stops
  * the auto-advance.
  */
-export function Showcase({ items, scenes }: { items: Dict["showcase"]["items"]; scenes: Dict["scenes"] }) {
+export function Showcase({
+  items,
+  scenes,
+  links,
+  more,
+}: {
+  items: Dict["showcase"]["items"];
+  scenes: Dict["scenes"];
+  /** Tab id → that tool's page. */
+  links: Record<string, string>;
+  more: string;
+}) {
   const [active, setActive] = useState(0);
   const [auto, setAuto] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -83,9 +95,15 @@ export function Showcase({ items, scenes }: { items: Dict["showcase"]["items"]; 
           </button>
         ))}
       </div>
-      <div id="sc-stage" role="tabpanel" aria-labelledby={`sc-tab-${items[active].id}`} className="sc-stage">
-        <Pattern id="sc-pattern" className="pattern-stage" />
-        <Scene key={items[active].id} t={scenes} />
+      <div className="sc-panel">
+        <div id="sc-stage" role="tabpanel" aria-labelledby={`sc-tab-${items[active].id}`} className="sc-stage">
+          <Pattern id="sc-pattern" className="pattern-stage" />
+          <Scene key={items[active].id} t={scenes} />
+        </div>
+        <a className="link sc-more" href={links[items[active].id]}>
+          {more} · {items[active].label}
+          <IconArrow className="dir" style={{ width: 18, height: 18 }} />
+        </a>
       </div>
     </div>
   );

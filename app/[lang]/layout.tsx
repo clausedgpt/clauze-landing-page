@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans, Markazi_Text, Readex_Pro } from "next/font/google";
 import { notFound } from "next/navigation";
 import { SITE_URL, dir, getDictionary, isLocale, locales } from "@/lib/i18n";
+import { INDEXABLE } from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/next"
 import "../globals.css";
 
@@ -29,22 +30,13 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const t = getDictionary(lang);
+  // Canonical, hreflang and Open Graph are set per route (lib/seo.ts).
   return {
     metadataBase: new URL(SITE_URL),
-    title: t.meta.title,
+    title: { default: t.meta.title, template: "%s · Clauze" },
     description: t.meta.description,
-    alternates: {
-      canonical: `/${lang}`,
-      languages: { fr: "/fr", ar: "/ar", en: "/en", "x-default": "/fr" },
-    },
-    openGraph: {
-      title: t.meta.title,
-      description: t.meta.description,
-      url: `/${lang}`,
-      siteName: "Clauze",
-      locale: { fr: "fr_TN", ar: "ar_TN", en: "en_US" }[lang],
-      type: "website",
-    },
+    applicationName: "Clauze",
+    ...(INDEXABLE ? {} : { robots: { index: false, follow: false } }),
   };
 }
 

@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import type { ComponentType, SVGProps } from "react";
 import { notFound } from "next/navigation";
 import { AssistantDemo } from "@/components/assistant-demo";
 import { Footer, Header } from "@/components/chrome";
+import { JsonLd } from "@/components/json-ld";
 import { Counter } from "@/components/counter";
 import {
   IconArrow,
@@ -16,7 +18,10 @@ import {
 } from "@/components/icons";
 import { Pattern } from "@/components/pattern";
 import { Showcase } from "@/components/showcase";
-import { APP_URL, CONTACT_EMAIL, getDictionary, isLocale } from "@/lib/i18n";
+import { CloseCta } from "@/components/site";
+import { APP_URL, getDictionary, isLocale } from "@/lib/i18n";
+import { type PageId, pageHref } from "@/lib/pages";
+import { appNode, routeMetadata, siteGraph, webPageNode } from "@/lib/seo";
 import { testimonials } from "@/lib/testimonials";
 
 const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -29,6 +34,22 @@ const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   shield: IconShield,
 };
 
+// Showcase tab → its feature page.
+const FEATURE_PAGE: Record<string, PageId> = {
+  recherche: "feature-research",
+  assistant: "feature-assistant",
+  revue: "feature-review",
+  redaction: "feature-drafting",
+  cabinet: "feature-firm",
+};
+
+export async function generateMetadata({ params }: PageProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const t = getDictionary(lang);
+  return routeMetadata(lang, "home", t.meta, { absolute: true });
+}
+
 // Layout after the legal-tech research (docs/research/landing-page-outlines.md):
 // short hero over a patterned ground → fact strip → looping product showcase →
 // Tunisian-law band → trust one-liners → film → FAQ → closing CTA.
@@ -37,8 +58,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang);
 
+  const featureLinks = Object.fromEntries(
+    Object.entries(FEATURE_PAGE).map(([tab, id]) => [tab, pageHref(id, lang)]),
+  );
+
   return (
     <>
+      <JsonLd
+        graph={[
+          ...siteGraph(t),
+          appNode(t),
+          webPageNode(lang, `/${lang}`, { name: t.meta.title, description: t.meta.description }),
+        ]}
+      />
       <a className="skip" href="#main">{t.nav.skip}</a>
       <Header t={t.nav} lang={lang} />
 
@@ -99,7 +131,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <h2 id="plateforme-h" className="h2">{t.showcase.title}</h2>
               <p className="body">{t.showcase.lede}</p>
             </div>
-            <Showcase items={t.showcase.items} scenes={t.scenes} />
+            <Showcase items={t.showcase.items} scenes={t.scenes} links={featureLinks} more={t.site.readMore} />
           </div>
         </section>
 
@@ -165,7 +197,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
         <section id="faq" className="section" aria-labelledby="faq-h">
           <div className="wrap faq-grid">
-            <h2 id="faq-h" className="h2">{t.faq.title}</h2>
+            <div>
+              <h2 id="faq-h" className="h2">{t.faq.title}</h2>
+              <a className="link faq-all" href={pageHref("faq", lang)}>
+                {t.site.allQuestions}
+                <IconArrow className="dir" style={{ width: 18, height: 18 }} />
+              </a>
+            </div>
             <div className="faq-list">
               {t.faq.items.map((f, i) => (
                 <details key={f.q} className="faq-item" open={i === 0}>
@@ -180,23 +218,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </div>
         </section>
 
-        <section id="acces" className="section dark close" aria-labelledby="acces-h">
-          <Pattern id="close-pattern" className="pattern-dark" />
-          <div className="wrap close-inner">
-            <h2 id="acces-h" className="h2">{t.close.title}</h2>
-            <p className="body">{t.close.line}</p>
-            <div className="actions">
-              <a className="btn btn-lg" href={`${APP_URL}/signup`}>
-                {t.close.cta}
-                <IconArrow className="dir" />
-              </a>
-            </div>
-            <p className="contact">
-              {t.close.contact}{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} dir="ltr">{CONTACT_EMAIL}</a>
-            </p>
-          </div>
-        </section>
+        <CloseCta t={t.close} />
       </main>
 
       <Footer t={t.footer} nav={t.nav} lang={lang} />
