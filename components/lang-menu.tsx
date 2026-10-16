@@ -5,8 +5,21 @@ import { type Locale, locales } from "@/lib/i18n";
 
 const LANG_NAME: Record<Locale, string> = { fr: "Français", ar: "العربية", en: "English" };
 
-/** Language dropdown: native <details>, closed on outside click and Escape. */
-export function LangMenu({ current, label, up = false }: { current: Locale; label: string; up?: boolean }) {
+/**
+ * Language dropdown: native <details>, closed on outside click and Escape.
+ * `alternates` is this page's address in each language (home by default).
+ */
+export function LangMenu({
+  current,
+  label,
+  alternates,
+  up = false,
+}: {
+  current: Locale;
+  label: string;
+  alternates?: Record<Locale, string>;
+  up?: boolean;
+}) {
   const ref = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
@@ -44,7 +57,7 @@ export function LangMenu({ current, label, up = false }: { current: Locale; labe
       <ul className="lang-list">
         {locales.map((l) => (
           <li key={l}>
-            <a href={`/${l}`} hrefLang={l} lang={l} aria-current={l === current ? "page" : undefined}>
+            <a href={alternates?.[l] ?? `/${l}`} hrefLang={l} lang={l} aria-current={l === current ? "page" : undefined}>
               {LANG_NAME[l]}
             </a>
           </li>
