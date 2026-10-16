@@ -41,9 +41,8 @@ After this merges, run `bash scripts/seo-setup-wizard.sh`: it walks through the 
 
 1. Push this folder to its own Git repo (or set Vercel's **Root Directory** to `clauze-landing-page` in a monorepo) and import it. Framework preset: Next.js, no env vars.
 2. Project → Settings → Domains: add `clauze.tn` and `www.clauze.tn` (redirect `www` → `clauze.tn`; the apex is canonical).
-3. At the DNS provider, replace the current records (they point at the app server, 31.70.150.159):
-   - `clauze.tn` → `A 216.198.79.1` (or whatever Vercel shows for the apex)
+3. At the DNS provider:
+   - `clauze.tn` → the `A` record Vercel shows for the apex
    - `www` → `CNAME` to the value Vercel shows (e.g. `cname.vercel-dns.com`)
-   - Leave `app` → `A 31.70.150.159` untouched.
-4. Once DNS moves, the app server's nginx block that 301s `clauze.tn`/`www.clauze.tn` to the app stops receiving that traffic; it can be removed from `clauze-backend/deploy/nginx.conf` later, along with the old `clauze.tn` certificate.
+   - Leave the `app` and `dev` records alone: they belong to the app, not this site.
 
